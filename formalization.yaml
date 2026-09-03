@@ -3,16 +3,9 @@
 version: v0.4
 project:
   name: 'Erdős problem #571 (rational exponents for Turán numbers of bipartite graphs): proof'
-  description: 'Proof of Erdős problem #571 in Lean 4 with Mathlib. The conjecture is true: for every rational `α
-    ∈ [1, 2)` there is a finite bipartite graph `G` with `ex(n; G) = Θ(n^α)`. Formally, the theorem proved is `Erdos571.erdos_571`,
-    the statement of the FrontierMath Erdős benchmark: for every `α : ℚ` with `1 ≤ α < 2` there are `q : ℕ` and
-    a bipartite `G : SimpleGraph (Fin q)` such that `(fun n => (extremalNumber n G : ℝ))` is `Θ((n : ℝ) ^ (α : ℝ))`
-    along `atTop`. The proof was produced autonomously by a pre-release version of GPT-6 Astra (OpenAI) in the FrontierMath
-    Erdős benchmark of Tom Adamczewski and Thomas F. Bloom (2026), in which AI systems must prove or disprove formal
-    statements of open Erdős problems inside a sandboxed Lean environment; the statement was taken from the benchmark''s
-    own autoformalization and was open as of August 2026. The repository contains 1 verified resolution of the statement
-    (one is wired to Comparator); the human contribution is limited to problem selection, statement review, running
-    the harness and packaging.'
+  description: 'Proof of Erdős problem #571 (Erdős–Simonovits rational exponents conjecture): for every rational
+    α ∈ [1, 2) there is a bipartite graph G with ex(n; G) ≍ n^α. Found autonomously by GPT-6 Astra in the FrontierMath
+    Erdős benchmark (Adamczewski and Bloom, 2026).'
   authors:
   - name: Tom Adamczewski
     github: tadamcz
