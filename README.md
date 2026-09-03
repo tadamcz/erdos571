@@ -66,11 +66,10 @@ by OpenAI on 3 September 2026: $10 per million input tokens, $50 per million out
 $12.50 per million cache-write tokens. The harness itself metered spend at stand-in GPT-5.6 Sol prices, which is what the `usd` figure
 in each file name reflects. **Working time** is the harness's `working_time` (time the agent was actually working, excluding waits on
 API retries and rate limits), read from the harness's eval logs; the `h` figure in each file name is instead wall-clock time.
-The Inspect transcripts are linked for the record (access may be restricted).
 
-| Module | Role | Attempt | Cost | Working time | Tokens, millions (input / output / cache read / cache write) | Inspect log |
-|---|---|---|---|---|---|---|
-| `Erdos571/Resolutions/Erdos571_325usd_42h.lean` | **primary** (wired to `Solution.lean`) | ReAct agent, larger budget, 26 Aug 2026 (re-run) | $617 | 41.3 h | 0.35 / 3.3 / 222 / 18.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/UGjEnixSG6RApwvDzjTtiv) |
+| Module | Role | Attempt | Cost | Working time | Tokens, millions (input / output / cache read / cache write) |
+|---|---|---|---|---|---|
+| `Erdos571/Resolutions/Erdos571_325usd_42h.lean` | **primary** (wired to `Solution.lean`) | ReAct agent, larger budget, 26 Aug 2026 (re-run) | $617 | 41.3 h | 0.35 / 3.3 / 222 / 18.1 |
 
 ## Proof account
 
