@@ -70,7 +70,7 @@ The Inspect transcripts are linked for the record (access may be restricted).
 
 | Module | Role | Attempt | Cost | Working time | Tokens, millions (input / output / cache read / cache write) | Inspect log |
 |---|---|---|---|---|---|---|
-| `Erdos571/Resolutions/Erdos571_325usd_42h.lean` | **primary** (wired to `Solution.lean`) | ReAct agent, larger budget, 26 Aug 2026 (re-run) | $617 | 41.0 h | 0.35 / 3.3 / 222 / 18.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/UGjEnixSG6RApwvDzjTtiv) |
+| `Erdos571/Resolutions/Erdos571_325usd_42h.lean` | **primary** (wired to `Solution.lean`) | ReAct agent, larger budget, 26 Aug 2026 (re-run) | $617 | 41.3 h | 0.35 / 3.3 / 222 / 18.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/UGjEnixSG6RApwvDzjTtiv) |
 
 ## Proof account
 
