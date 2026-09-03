@@ -50,7 +50,7 @@ from the informal statement is known. The relation between this proof and the su
 ## Provenance
 
 **Benchmark.** FrontierMath Erdős (Adamczewski and Bloom, 2026) evaluates AI systems on 68 open Erdős problems selected by Thomas F. Bloom, in the Lean proof
-assistant, autonomously and under a fixed, disclosed budget per attempt. The
+assistant, autonomously and under a fixed, disclosed budget ($300 and 72 hours of working time per attempt in the default configuration). The
 agent works in a network-isolated Docker container with a Lean 4 toolchain (v4.27.0) and Mathlib, SageMath and Python; its final
 `Spec.lean` is checked in a separate pristine container by Comparator against the trusted statement, permitting only `propext`,
 `Quot.sound` and `Classical.choice`. The benchmark, harness and statements are public at
@@ -60,13 +60,17 @@ agent works in a network-isolated Docker container with a Lean 4 toolchain (v4.2
 
 **Resolutions.** One attempt resolved this statement.
 "Default configuration" is the deepagent-based agent with subagents, memory and an offline arXiv snapshot under the benchmark's
-fixed per-attempt budget; "ReAct agent, larger budget" is a basic agent given a larger budget. The file names carry the harness's
-metered cost and working time as released with the paper; the paper is the reference for those figures. The Inspect transcripts are
-linked for the record (access may be restricted).
+budget of $300 and 72 hours of working time per attempt; "ReAct agent, larger budget" is a basic agent under a $1,000 budget.
+**Cost** is computed from the attempt's exact token counts (from the harness's eval logs) at GPT-6 Astra's standard rates as provided
+by OpenAI on 3 September 2026: $10 per million input tokens, $50 per million output tokens, $1 per million cache-read tokens and
+$12.50 per million cache-write tokens. The harness itself metered spend at stand-in GPT-5.6 Sol prices, which is what the `usd` figure
+in each file name reflects. **Working time** is the harness's `working_time` (time the agent was actually working, excluding waits on
+API retries and rate limits), in whole hours as reported in the paper; the `h` figure in each file name is instead wall-clock time.
+The Inspect transcripts are linked for the record (access may be restricted).
 
-| Module | Role | Attempt | Inspect log |
-|---|---|---|---|
-| `Erdos571/Resolutions/Erdos571_325usd_42h.lean` | **primary** (wired to `Solution.lean`) | ReAct agent, larger budget, 26 Aug 2026 (re-run) | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/UGjEnixSG6RApwvDzjTtiv) |
+| Module | Role | Attempt | Cost | Working time | Tokens, millions (input / output / cache read / cache write) | Inspect log |
+|---|---|---|---|---|---|---|
+| `Erdos571/Resolutions/Erdos571_325usd_42h.lean` | **primary** (wired to `Solution.lean`) | ReAct agent, larger budget, 26 Aug 2026 (re-run) | $617 | 41 h | 0.35 / 3.3 / 222 / 18.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/UGjEnixSG6RApwvDzjTtiv) |
 
 ## Proof account
 
