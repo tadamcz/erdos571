@@ -1,0 +1,158 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4 (mathlib-initiative format, Palomar registry rules).
+version: v0.4
+project:
+  name: 'Erdős problem #571 (rational exponents for Turán numbers of bipartite graphs): proof'
+  description: 'Proof of Erdős problem #571 in Lean 4 with Mathlib. The conjecture is true: for every rational `α
+    ∈ [1, 2)` there is a finite bipartite graph `G` with `ex(n; G) = Θ(n^α)`. Formally, the theorem proved is `Erdos571.erdos_571`,
+    the statement of the FrontierMath Erdős benchmark: for every `α : ℚ` with `1 ≤ α < 2` there are `q : ℕ` and
+    a bipartite `G : SimpleGraph (Fin q)` such that `(fun n => (extremalNumber n G : ℝ))` is `Θ((n : ℝ) ^ (α : ℝ))`
+    along `atTop`. The proof was produced autonomously by a pre-release version of GPT-6 Astra (OpenAI) in the FrontierMath
+    Erdős benchmark of Epoch AI and Thomas F. Bloom, in which AI systems must prove or disprove formal statements
+    of open Erdős problems inside a sandboxed Lean environment; the statement was taken from the benchmark''s own
+    autoformalization and was open as of August 2026. The repository contains 1 verified resolution of the statement
+    (one is wired to Comparator); the human contribution is limited to problem selection, statement review, running
+    the harness and packaging.'
+  authors:
+  - Tom Adamczewski
+  license: Apache-2.0
+  responsible_maintainers:
+  - Tom Adamczewski
+classification:
+  arxiv:
+  - math.CO
+  msc2020:
+  - 05C35
+sources:
+- title: 'Proof of Erdős problem #571: For every rational α ∈ [1,2) there is a bipartite graph G with ex(n; G) ≍
+    n^α.'
+  type: original-proof
+  relationship: other
+  note: This formalization is the first presentation of the result. The Lean proof was found by a pre-release version
+    of GPT-6 Astra, working autonomously in the FrontierMath Erdős benchmark harness; no human wrote or steered
+    the proof. Novelty of the ideas relative to the literature has not been established; the resolution itself is
+    new (the problem was listed as open on erdosproblems.com as of August 2026).
+- title: 'Erdős problem #571 (erdosproblems.com)'
+  type: web discussion
+  contributors:
+  - name: Paul Erdős
+    role: problem proposer
+  - name: Miklós Simonovits
+    role: problem proposer
+  - name: Thomas F. Bloom
+    role: curator of erdosproblems.com
+  id: https://www.erdosproblems.com/571
+  location: https://www.erdosproblems.com/571
+  relationship: background
+  note: Problem page with statement, history, references and (since the resolution) an informal exposition by Thomas
+    F. Bloom.
+- title: Rational exponents in extremal graph theory
+  authors:
+  - Boris Bukh
+  - David Conlon
+  type: paper
+  id: https://doi.org/10.4171/JEMS/798
+  location: J. Eur. Math. Soc. 20 (2018), no. 7, pp. 1747–1757
+  relationship: background
+  note: Proved the rational exponents conjecture for finite families of bipartite graphs; the single-graph version
+    is the problem resolved here.
+- title: Cube-supersaturated graphs and related problems
+  authors:
+  - Paul Erdős
+  - Miklós Simonovits
+  type: paper
+  location: Progress in graph theory (Waterloo, Ont., 1982), Academic Press, Toronto, 1984, pp. 203–218
+  relationship: background
+  note: Erdős–Simonovits discussion of exponents of bipartite Turán numbers (source ErSi84 on erdosproblems.com).
+- title: FrontierMath Erdős
+  authors:
+  - Tom Adamczewski
+  - Thomas F. Bloom
+  type: paper
+  location: https://github.com/epoch-research/LeanOpenProblems
+  relationship: background
+  note: Manuscript (Epoch AI and University of Manchester, 2026) describing the benchmark of 68 open Erdős problems,
+    the agent harness, the verification protocol and the results; this resolution is reported in its Results section
+    and summarised in its appendix. The benchmark and Lean statements are at the given repository.
+related_formalizations:
+- id: https://github.com/epoch-research/LeanOpenProblems/blob/77882c437ca1dfefab3b27fa00f1d29788100311/apn/data/erdos_autoformalized/Isolated/Erdos571.erdos_571.lean
+  relationship: builds-on
+  note: The statement file given to the AI system in the FrontierMath Erdős benchmark. The problem had no statement
+    in Formal Conjectures; this statement was produced by Epoch AI's autoformalization pipeline and reviewed for
+    faithfulness by Thomas F. Bloom. The compared theorem is this statement, proved.
+status:
+  scope: 'Fully formalized: the compared theorem `Erdos571.erdos_571` in `Challenge.lean` is proved in `Solution.lean`
+    via the imported module `Erdos571.Resolutions.Erdos571_325usd_42h` with no `sorry` and no axioms beyond propext,
+    Quot.sound and Classical.choice. Only the conjectured statement is advertised; stronger quantitative bounds
+    visible inside the proofs are not part of the compared statement. Nothing about the informal problem was omitted
+    or weakened relative to the benchmark''s formal statement; see fidelity.divergences for the relation between
+    that formal statement and the informal problem.'
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+automation:
+  methods:
+  - method: autonomous
+    models:
+    - GPT-6 Astra (pre-release version, OpenAI)
+    framework: Inspect AI (UK AISI) with the LeanOpenProblems task harness; deepagent-based agent for default-configuration
+      attempts, basic ReAct agent for the larger-budget attempts
+    tool_setup: The model worked alone in a Docker container without network access, with bash, a text editor, a
+      resource-budget tool, a Lean 4 toolchain (v4.27.0) with Mathlib (via Formal Conjectures at commit 488aade228ec),
+      SageMath, Python (sympy, mpmath, numpy, pantograph) and, in the default configuration, subagents, persistent
+      memory, a todo list and an offline snapshot of about 476,000 pure-mathematics arXiv LaTeX sources (proof-pile,
+      up to 2022). Its submission was checked in a separate pristine container by Comparator (Lean FRO) against
+      the trusted statement, permitting only the three standard axioms.
+    cost:
+      wall_time: 42 hours of agent working time for the primary resolution (ReAct agent, larger budget, 26 Aug 2026
+        (re-run))
+      spend_usd: 325 USD metered for the primary resolution at GPT-5.6 Sol per-token prices (the pre-release model's
+        prices were unpublished at the time); the FrontierMath Erdős paper recomputes costs at GPT-6 Astra's actual
+        prices, about 1.8–2.0 times higher
+      hardware: API-only inference; the agent's sandbox ran on Epoch AI's cloud evaluation infrastructure (Hawk)
+    prompting_notes: 'Fixed task prompt from the harness (apn/prompts.py in LeanOpenProblems): settle the conjecture
+      in Spec.lean by filling the `sorry` of either the statement or its `.disproof` negation without altering either
+      statement or the imports, using only the permitted axioms; a description of the available tools; and general
+      encouragement that open conjectures are not infeasible. No problem-specific hints or human interaction. Transcripts
+      are linked in the README.'
+  spend_usd: 325 USD metered across the 1 resolution attempt(s) included in this repository (see method notes for
+    the price basis); the paper reports over 220,000 USD of compute across all attempts on all 68 benchmark problems
+  notes: 'The Lean development was written entirely by the AI system inside the benchmark harness. Humans (Thomas
+    F. Bloom) selected the problem and reviewed the formal statement for faithfulness before the run; humans (Tom
+    Adamczewski) ran the harness and, after the run, packaged the verified output into this repository. The only
+    edits to the AI-written files are mechanical and are listed in the README: port to Mathlib v4.28.0: Mathlib
+    v4.28.0 changed the field `SimpleGraph.loopless` from `Irreflexive Adj` to the class `Std.Irrefl Adj`, so proofs
+    of that field need a `constructor` step (or an anonymous-constructor wrapper) and uses of `G.loopless` as a
+    function become `G.loopless.irrefl`. Changed lines:.'
+fidelity:
+  divergences: 'The compared theorem is the benchmark''s formalisation of the erdosproblems.com statement. `extremalNumber
+    n G` is Mathlib''s Turán number (maximum edge count of a `G`-free simple graph on `Fin n`); `G.IsBipartite`
+    is Mathlib''s bipartiteness; `Asymptotics.IsTheta atTop` encodes `≍` (two-sided `≪`) for `n → ∞`, with both
+    sides cast to `ℝ` and `n^α` read as the real power `(n : ℝ) ^ (α : ℝ)`. The graph lives on `Fin q`, which loses
+    no generality. No divergence from the informal statement is known. The relation between this proof and the substantial
+    existing literature (Bukh–Conlon and later work) has not yet been worked out.'
+review:
+  status: 'mechanically verified (Comparator: Lean kernel replay, standard axioms only) in the benchmark harness
+    and again in this repository''s CI; preliminary informal reading of the argument by Thomas F. Bloom; no independent
+    refereeing'
+  reviewers:
+  - Thomas F. Bloom
+  notes: 'Statement audit: the formal statement was selected and reviewed for faithfulness to the informal problem
+    by Thomas F. Bloom before the benchmark run (for Formal Conjectures statements he chose the representative statement;
+    autoformalized statements he checked individually). Mathematical review: the resolution was verified by Comparator
+    against the trusted statement; Thomas F. Bloom made an initial, informal examination of the argument and wrote
+    a short exposition (FrontierMath Erdős appendix and erdosproblems.com). The paper states that the proofs have
+    not yet been properly digested by human experts.'
+alignment:
+  namespace: Erdos571
+  statements:
+  - source: erdosproblems.com/571, as formalized for the FrontierMath Erdős benchmark
+    lean: Erdos571.erdos_571
+    module: Challenge
+    status: proved
+    note: The compared theorem is the formal conjecture itself. Its exact text is identical to the benchmark statement
+      (Comparator enforces this against the imported proof module).
+acknowledgements: Lean 4, Mathlib and the Lean FRO's Comparator; Google DeepMind's Formal Conjectures project for
+  the formal statements of the Erdős problems it covers; Thomas F. Bloom (erdosproblems.com) for problem selection,
+  statement review and the informal expositions; Epoch AI for running the benchmark; OpenAI for pre-release access
+  to GPT-6 Astra; the Palomar registry template for the repository layout.

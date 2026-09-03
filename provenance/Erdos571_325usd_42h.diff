@@ -1,0 +1,78 @@
+--- astra-resolutions/Erdos571_325usd_42h.lean
++++ Erdos571/Resolutions/Erdos571_325usd_42h.lean
+@@ -1,4 +1,4 @@
+-import FormalConjecturesUtil
++import Mathlib
+ 
+ set_option linter.all false
+ set_option linter.unusedTactic false
+@@ -467,6 +467,7 @@
+     rcases u with i | a | e <;> rcases v with j | b | f
+     all_goals first | exact h | simpa only [Sym2.eq_swap] using h
+   loopless := by
++    constructor
+     intro u
+     rcases u with i | a
+     · exact not_false
+@@ -1412,7 +1413,7 @@
+ def cut (c : V → Bool) : SimpleGraph V where
+   Adj x y := H.Adj x y ∧ c x ≠ c y
+   symm := by intro x y h; exact ⟨h.1.symm,h.2.symm⟩
+-  loopless := by intro x h; exact h.2 rfl
++  loopless := by constructor; intro x h; exact h.2 rfl
+ 
+ instance (c : V → Bool) : DecidableRel (cut H c).Adj := fun _ _ => inferInstanceAs (Decidable (_ ∧ _))
+ 
+@@ -1522,7 +1523,7 @@
+     · exact h.symm
+     · exact h.symm
+     · exact h.symm
+-  loopless := by intro u h; cases u; exact h rfl; exact h.ne rfl
++  loopless := by constructor; intro u h; cases u; exact h rfl; exact h.ne rfl
+ 
+ 
+ /-- Extend a copy using two new distinct vertices with the necessary adjacencies. -/
+@@ -1568,7 +1569,7 @@
+     | Sum.inr b, Sum.inl a => R a b
+     | _,_ => False
+   symm := by intro u v h; cases u <;> cases v <;> exact h
+-  loopless := by intro u h; cases u <;> exact h
++  loopless := by constructor; intro u h; cases u <;> exact h
+ 
+ instance {A B : Type*} (R : A → B → Prop) [∀ a b, Decidable (R a b)] :
+     DecidableRel (biGraph R).Adj := by
+@@ -2250,7 +2251,7 @@
+     | Sum.inr y, Sum.inl x => ∀ j, eval (Sum.elim x y) (P j) = 0
+     | _, _ => False
+   symm := by intro u v h; cases u <;> cases v <;> exact h
+-  loopless := by intro v; cases v <;> exact not_false
++  loopless := by constructor; intro v; cases v <;> exact not_false
+ 
+ 
+ def pairVariables {W : Type*} (u v : W) : Variables τ → W × τ :=
+@@ -3355,6 +3356,7 @@
+     · exact h.symm
+     · exact h.symm
+   loopless := by
++    constructor
+     intro u h
+     cases u
+     · exact h.2.ne rfl
+@@ -4631,7 +4633,7 @@
+     | Sum.inr _, Sum.inl _ => True
+     | _, _ => False
+   symm := by intro u v h; cases u <;> cases v <;> exact h
+-  loopless := by intro v; cases v <;> exact not_false
++  loopless := by constructor; intro v; cases v <;> exact not_false
+ 
+ lemma graph_bipartite (s t : ℕ) : (graph s t).IsBipartite := by
+   refine ⟨Coloring.mk (Sum.elim (fun _ => (0 : Fin 2)) (fun _ => 1)) ?_⟩
+@@ -6982,7 +6984,7 @@
+     refine ⟨h.1.symm,?_⟩
+     rw [← fiber_symmetric G (threshold B) j x y]
+     exact h.2
+-  loopless := by intro x h; exact h.1 rfl
++  loopless := by constructor; intro x h; exact h.1 rfl
+ 
+ 
+ end
